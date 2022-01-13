@@ -1,0 +1,23 @@
+#!/usr/bin/make -f
+# [[ filename ]]
+
+CANIHAZDEFAULTVALUE:=1
+
+# First task is executed by default.
+
+# Phony really means 'run every time'.
+.PHONY: help
+help:		## Shows this message.
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+
+
+.PHONY: do
+do:			## Do something.
+	@echo 'I do not echo the echo.'
+
+.PHONY: clean
+clean:		## Remove unused files.
+	-rm /tmp/rm_fails_but_we_get_just_a_warning
+
+
+
